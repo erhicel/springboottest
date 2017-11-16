@@ -7,21 +7,23 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.apiexample.model.extern.UserResponse;
-import com.apiexample.service.UserService;
+import com.apiexample.model.api.AlbumApiResponse;
+import com.apiexample.service.AlbumService;
 
 @RestController
 @RequestMapping(value = "/rest")
-public class UserRest {
+public class AlbumRest {
 
 	private final Logger logger = LoggerFactory.getLogger(this.getClass());
 
 	@Autowired
-	private UserService userService;
+	private AlbumService albumService;
 
-	@GetMapping("/users")
-	public UserResponse postListUser() {
-		return userService.userListUser();
+	@GetMapping("/albums")
+	public AlbumApiResponse albums() {
+		AlbumApiResponse result = albumService.albumResponseList();
+		logger.info(result.toString());
+		return result;
 	}
 
 }

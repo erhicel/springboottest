@@ -1,5 +1,6 @@
 package com.apiexample.controller.rest;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.slf4j.Logger;
@@ -17,6 +18,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.apiexample.model.api.PostApiResponse;
+import com.apiexample.model.extern.Element;
+import com.apiexample.model.extern.Father;
 import com.apiexample.service.MolestiaService;
 import com.apiexample.service.PostService;
 
@@ -60,6 +63,29 @@ public class PostRest {
 		logger.error("lalalala");
 
 		return postService.postListExternal();
+	}
+
+	@GetMapping("/listJSON")
+	public List<Father> listJSON() {
+
+		List<Father> listFathers = new ArrayList<>();
+
+		for (int a = 0; a < 3; a++) {
+
+			Father father = new Father();
+
+			List<Element> listElement = new ArrayList<>();
+			for (int i = 0; i < 4; i++) {
+				Element element = new Element();
+				element.setName("nombre" + i);
+				listElement.add(element);
+			}
+			father.setElements(listElement);
+			father.setMaster("Prueba" + a);
+
+			listFathers.add(father);
+		}
+		return listFathers;
 	}
 
 	@PostMapping("/posts")

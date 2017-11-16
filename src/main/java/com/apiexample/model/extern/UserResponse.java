@@ -1,6 +1,7 @@
 package com.apiexample.model.extern;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class UserResponse {
 
